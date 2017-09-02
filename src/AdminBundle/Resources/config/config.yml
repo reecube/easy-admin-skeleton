@@ -1,0 +1,10 @@
+easy_admin:
+    entities:
+        Category:
+            class: AppBundle\Entity\Category
+        Product:
+            class: AppBundle\Entity\Product
+        Purchase:
+            class: AppBundle\Entity\Purchase
+        PurchaseItem:
+            class: AppBundle\Entity\PurchaseItem
