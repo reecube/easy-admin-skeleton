@@ -100,6 +100,16 @@ jspm_packages
 /var/sessions/*
 !var/sessions/.gitkeep
 !var/SymfonyRequirements.php
+!var/data/
+var/data/*
+!var/data/.gitkeep
+
+# Parameters
+/app/config/parameters.yml
+
+# Managed by Composer
 /vendor/
+
+# Assets and user uploads
 /web/bundles/
 /web/remark/

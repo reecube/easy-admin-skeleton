@@ -22,11 +22,13 @@ class LoadPurchases extends AbstractFixture implements OrderedFixtureInterface
             $purchase->setGuid($this->generateGuid());
             $purchase->setDeliveryDate(new \DateTime("+$i days"));
             $purchase->setCreatedAt(new \DateTime("now +$i seconds"));
+            $purchase->setShipping(new \StdClass());
             $purchase->setDeliveryHour($this->getRandomHour());
             $purchase->setBillingAddress(json_encode(array(
                 'line1' => '1234 Main Street',
                 'line2' => 'Big City, XX 23456',
             )));
+            $purchase->setBuyer($this->getReference('user-'.($i % 20)));
 
             $this->addReference('purchase-'.$i, $purchase);
             $manager->persist($purchase);

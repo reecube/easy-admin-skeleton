@@ -12,6 +12,8 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * Class Product.
@@ -19,6 +21,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @author MacFJA
  *
  * @ORM\Entity
+ * @Vich\Uploadable
  */
 class Product
 {
@@ -72,6 +75,16 @@ class Product
      * @var string
      */
     private $image;
+
+    /**
+     * This unmapped property stores the binary contents of the image file
+     * associated with the product.
+     *
+     * @Vich\UploadableField(mapping="product_images", fileNameProperty="image")
+     *
+     * @var File
+     */
+    private $imageFile;
 
     /**
      * Features of the product.
@@ -253,6 +266,22 @@ class Product
     public function getFeatures()
     {
         return $this->features;
+    }
+
+    /**
+     * @param File $image
+     */
+    public function setImageFile(File $image = null)
+    {
+        $this->imageFile = $image;
+    }
+
+    /**
+     * @return File
+     */
+    public function getImageFile()
+    {
+        return $this->imageFile;
     }
 
     /**

@@ -11,6 +11,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use AppBundle\Model\Shipment;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -57,6 +58,14 @@ class Purchase
     protected $createdAt = null;
 
     /**
+     * The shipping information.
+     *
+     * @var Shipment
+     * @ORM\Column(type="object")
+     */
+    protected $shipping = null;
+
+    /**
      * The customer preferred time of the day for the delivery.
      *
      * @var \DateTime|null
@@ -71,6 +80,14 @@ class Purchase
      * @ORM\Column(type="json_array")
      */
     protected $billingAddress = array();
+
+    /**
+     * The user who made the purchase.
+     *
+     * @var User
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="purchases")
+     */
+    protected $buyer;
 
     /**
      * Items that have been purchased.
@@ -109,6 +126,22 @@ class Purchase
     public function getBillingAddress()
     {
         return $this->billingAddress;
+    }
+
+    /**
+     * @param User $buyer
+     */
+    public function setBuyer($buyer)
+    {
+        $this->buyer = $buyer;
+    }
+
+    /**
+     * @return User
+     */
+    public function getBuyer()
+    {
+        return $this->buyer;
     }
 
     /**
@@ -176,6 +209,22 @@ class Purchase
     }
 
     /**
+     * @param Shipment $shipping
+     */
+    public function setShipping($shipping)
+    {
+        $this->shipping = $shipping;
+    }
+
+    /**
+     * @return Shipment
+     */
+    public function getShipping()
+    {
+        return $this->shipping;
+    }
+
+    /**
      * @param int $storeId
      *
      * @return string
@@ -188,7 +237,7 @@ class Purchase
     /** {@inheritdoc} */
     public function __toString()
     {
-        return 'Purchase #' . $this->getId();
+        return 'Purchase #'.$this->getId();
     }
 
     /**
