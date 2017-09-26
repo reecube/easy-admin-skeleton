@@ -9,10 +9,20 @@
 # The configuration options are explained in detail in the bundle documentation,
 # which is published at https://github.com/javiereguiluz/EasyAdminBundle
 easy_admin:
-    site_name: 'ACME Backend'
+    site_name: 'easy-admin-skeleton'
     design:
+        brand_color: '#2980b9'
         form_theme:   'vertical'
         color_scheme: 'dark'
         assets:
+            favicon: '/favicon.ico'
             css:
                 - '/bundles/app/stylesheets/demo.css'
+    formats:
+        date:     'd.m.Y'
+        time:     'H:i'
+        datetime: 'd.m.Y H:i:s'
+    list:
+        max_results: 30
+    show:
+        max_results: 20
