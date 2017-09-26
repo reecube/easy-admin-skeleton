@@ -1,4 +1,4 @@
-_homepage:
+app:
     path: /
     defaults: { _controller: FrameworkBundle:Redirect:redirect, route: easyadmin, permanent: true }
 
